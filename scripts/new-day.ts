@@ -2,7 +2,9 @@ import { mkdirSync, writeFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const __filename = fileURLToPath(import.meta.url);
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const __dirname = dirname(__filename);
 
 const dayArg = process.argv[2];
@@ -29,19 +31,22 @@ if (existsSync(dayDir)) {
 
 mkdirSync(dayDir, { recursive: true });
 
-const template = `export function part1(input: string): number | string {
-  const lines = input.trim().split('\\n');
+const template = `import { parseLines } from '../utils/parsing.js';
+import type { Solution } from '../types.js';
 
-  // TODO: Implement solution
+export const part1: Solution = (input: string): number | string => {
+  const lines = parseLines(input);
+  console.log(\`Processing \${lines.length} lines...\`);
+
   return 0;
-}
+};
 
-export function part2(input: string): number | string {
-  const lines = input.trim().split('\\n');
+export const part2: Solution = (input: string): number | string => {
+  const lines = parseLines(input);
+  console.log(\`Processing \${lines.length} lines...\`);
 
-  // TODO: Implement solution
   return 0;
-}
+};
 `;
 
 const testTemplate = `import { describe, it, expect } from 'vitest';
@@ -53,6 +58,10 @@ describe('Day ${dayNum}', () => {
   describe('Part 1', () => {
     it('should solve example input', () => {
       expect(part1(exampleInput)).toBe(0);
+    });
+
+    it.skip('should handle edge cases', () => {
+      expect(part1('')).toBe(0);
     });
   });
 
