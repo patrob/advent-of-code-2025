@@ -5,11 +5,16 @@
   "type": "module",
   "scripts": {
     "start": "tsx runner.ts",
-    "new-day": "tsx scripts/new-day.ts"
+    "new-day": "tsx scripts/new-day.ts",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
+    "@vitest/ui": "^2.1.8",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
   }
 }

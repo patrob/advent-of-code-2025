@@ -44,9 +44,32 @@ export function part2(input: string): number | string {
 }
 `;
 
+const testTemplate = `import { describe, it, expect } from 'vitest';
+import { part1, part2 } from './index.js';
+
+const exampleInput = \`\`;
+
+describe('Day ${dayNum}', () => {
+  describe('Part 1', () => {
+    it('should solve example input', () => {
+      expect(part1(exampleInput)).toBe(0);
+    });
+  });
+
+  describe('Part 2', () => {
+    it('should solve example input', () => {
+      expect(part2(exampleInput)).toBe(0);
+    });
+  });
+});
+`;
+
 writeFileSync(join(dayDir, 'index.ts'), template);
+writeFileSync(join(dayDir, 'index.test.ts'), testTemplate);
 writeFileSync(join(dayDir, 'input.txt'), '');
 
 console.log(`✨ Created day ${dayNum} at ${dayDir}`);
 console.log(`📝 Add your input to: src/day${dayStr}/input.txt`);
+console.log(`🧪 Add example input to: src/day${dayStr}/index.test.ts`);
 console.log(`🚀 Run with: npm start ${dayNum}`);
+console.log(`🧪 Test with: npm test day${dayStr}`);
