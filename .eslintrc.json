@@ -54,7 +54,6 @@
     "prefer-const": "error",
     "no-var": "error",
     "eqeqeq": ["error", "always"],
-    "curly": ["error", "all"],
     "complexity": ["warn", 15],
     "@typescript-eslint/prefer-readonly": "error",
     "@typescript-eslint/prefer-nullish-coalescing": "error",
