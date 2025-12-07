@@ -52,7 +52,7 @@ export function* permutations<T>(items: T[]): Generator<T[]> {
   }
 
   for (let i = 0; i < items.length; i++) {
-    const current = items[i]!;
+    const current = items[i];
     const remaining = [...items.slice(0, i), ...items.slice(i + 1)];
 
     for (const perm of permutations(remaining)) {
@@ -72,7 +72,7 @@ export function* combinations<T>(items: T[], size: number): Generator<T[]> {
   }
 
   for (let i = 0; i <= items.length - size; i++) {
-    const first = items[i]!;
+    const first = items[i];
     const rest = items.slice(i + 1);
 
     for (const combo of combinations(rest, size - 1)) {

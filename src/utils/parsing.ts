@@ -52,5 +52,5 @@ export function transpose<T>(grid: T[][]): T[][] {
   if (grid.length === 0) {
     return [];
   }
-  return grid[0]!.map((_, colIndex) => grid.map((row) => row[colIndex]!));
+  return grid[0].map((_, colIndex) => grid.map((row) => row[colIndex]));
 }

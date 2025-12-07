@@ -71,9 +71,9 @@ export function benchmark<T>(
 
   return {
     mean: times.reduce((a, b) => a + b, 0) / times.length,
-    median: times[Math.floor(times.length / 2)]!,
-    min: times[0]!,
-    max: times[times.length - 1]!,
+    median: times[Math.floor(times.length / 2)],
+    min: times[0],
+    max: times[times.length - 1],
     result: result!,
   };
 }

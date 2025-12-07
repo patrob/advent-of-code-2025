@@ -24,7 +24,7 @@ export const getNextJolt = (batteries: number[], currentIndex: number, maxIndex:
   let jolt = -1;
   let index = -1;
   for (let i = currentIndex + 1; i <= maxIndex; i++) {
-    if ( batteries[i]! > jolt) {
+    if ( batteries[i] > jolt) {
       jolt = batteries[i]!;
       index = i;
     }
@@ -48,7 +48,7 @@ export const getJolts = (input: string, numJolts: number): number[] => {
   const jolts: number[] = [-1];
   // let firstJoltIndex = -1;
   for (let i = 0; i < batteries.length - numJolts; i++) {
-    if (batteries[i]! > jolts[0]!) {
+    if (batteries[i] > jolts[0]) {
       jolts[0] = batteries[0]!;
       // firstJoltIndex = i;
     }

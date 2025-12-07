@@ -55,7 +55,7 @@ export function zip<T, U>(a: T[], b: U[]): Array<[T, U]> {
   const result: Array<[T, U]> = [];
 
   for (let i = 0; i < length; i++) {
-    result.push([a[i]!, b[i]!]);
+    result.push([a[i], b[i]]);
   }
 
   return result;
@@ -98,11 +98,11 @@ export function min<T>(items: T[], keyFn: (item: T) => number): T | undefined {
     return undefined;
   }
 
-  let minItem = items[0]!;
+  let minItem = items[0];
   let minValue = keyFn(minItem);
 
   for (let i = 1; i < items.length; i++) {
-    const item = items[i]!;
+    const item = items[i];
     const value = keyFn(item);
     if (value < minValue) {
       minItem = item;
@@ -118,11 +118,11 @@ export function max<T>(items: T[], keyFn: (item: T) => number): T | undefined {
     return undefined;
   }
 
-  let maxItem = items[0]!;
+  let maxItem = items[0];
   let maxValue = keyFn(maxItem);
 
   for (let i = 1; i < items.length; i++) {
-    const item = items[i]!;
+    const item = items[i];
     const value = keyFn(item);
     if (value > maxValue) {
       maxItem = item;
