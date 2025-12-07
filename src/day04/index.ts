@@ -1,6 +1,6 @@
-import { parseGrid, parseLines } from '../utils/parsing.js';
+import { parseGrid } from '../utils/parsing.js';
 import type { Solution } from '../types.js';
-import { Point } from '@utils/algorithms.js';
+import { getNeighbors, Point } from '@utils/algorithms.js';
 
 export type Node = {
   point: Point;
@@ -9,21 +9,7 @@ export type Node = {
 
 export const parseNode = (type: string, row: number, col: number): Node => ({type, point: {x: col, y: row}});
 export const countSurroundingChars = (nodes: Node[][], currentLoc: Point, searchChar: string): number => {
-  const checkVectors: Point[] = [
-    {x: -1, y: -1}, {x: 0, y: -1}, {x: 1, y: -1},
-    {x: -1, y: 0}, {x: 1, y: 0},
-    {x: -1, y: 1}, {x: 0, y: 1}, {x: 1, y: 1}
-  ];
-
-  let findCount = 0;
-  checkVectors.forEach(direction => {
-    const x = currentLoc.x + direction.x;
-    const y = currentLoc.y + direction.y;
-    if (y < 0 || y > nodes.length - 1) return;
-    if (x < 0 || x > nodes[y].length - 1) return;
-    if (nodes[y][x].type === searchChar) findCount++;
-  });
-  return findCount;
+  return getNeighbors(nodes, currentLoc, true).filter((loc: Point) => nodes[loc.y][loc.x].type === searchChar).length;
 }
 
 export const part1: Solution = (input: string): number | string => {

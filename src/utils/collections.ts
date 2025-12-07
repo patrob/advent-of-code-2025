@@ -61,6 +61,10 @@ export function zip<T, U>(a: T[], b: U[]): Array<[T, U]> {
   return result;
 }
 
+export function withinRange(start: number, end: number, value: number): boolean {
+  return value >= start && value <= end;
+}
+
 export function range(start: number, end?: number, step = 1): number[] {
   if (end === undefined) {
     end = start;

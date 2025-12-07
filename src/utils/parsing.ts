@@ -14,6 +14,18 @@ export function parseNumbers(input: string): number[] {
     .filter((n) => !isNaN(n));
 }
 
+export function parseRange(input: string): { start: number; end: number } {
+  return input
+    .trim()
+    .split('-')
+    .map(Number)
+    .reduce(
+      (acc, current, index) =>
+        index === 0 ? { start: current, end: 0 } : { start: acc.start, end: current },
+      { start: 0, end: 0 },
+    );
+}
+
 export function parseGrid<T = string>(input: string, transform?: (char: string) => T): T[][] {
   const lines = parseLines(input);
   return lines.map((line) => line.split('').map(transform ?? ((c) => c as unknown as T)));
