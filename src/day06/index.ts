@@ -31,7 +31,48 @@ export const part1: Solution = (input: string): number | string => {
 
 export const part2: Solution = (input: string): number | string => {
   const lines = parseLines(input);
-  console.log(`Processing ${lines.length} lines...`);
+  const numRows = lines.length;
+  const maxCols = Math.max(...lines.map((l) => l.length));
+  const paddedLines = lines.map((l) => l.padEnd(maxCols));
 
-  return 0;
+  let total = 0;
+  let currentNumbers: number[] = [];
+  let currentOperator: string | null = null;
+
+  const processCurrentProblem = () => {
+    if (currentOperator && currentNumbers.length > 0) {
+      const result =
+        currentOperator === '+'
+          ? currentNumbers.reduce((a, b) => a + b, 0)
+          : currentNumbers.reduce((a, b) => a * b, 1);
+      total += result;
+    }
+    currentNumbers = [];
+    currentOperator = null;
+  };
+
+  for (let col = maxCols - 1; col >= 0; col--) {
+    const columnChars = paddedLines.map((l) => l[col] || ' ');
+    const bottomChar = columnChars[numRows - 1];
+    const digitChars = columnChars.slice(0, numRows - 1);
+    const digitString = digitChars.join('').replace(/ /g, '');
+
+    const isOperator = bottomChar === '+' || bottomChar === '*';
+    const isAllSpaces = digitString === '' && bottomChar === ' ';
+
+    if (isAllSpaces) {
+      processCurrentProblem();
+    } else {
+      if (digitString) {
+        currentNumbers.push(parseInt(digitString, 10));
+      }
+      if (isOperator) {
+        currentOperator = bottomChar;
+      }
+    }
+  }
+
+  processCurrentProblem();
+
+  return total;
 };
