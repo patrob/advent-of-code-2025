@@ -59,10 +59,6 @@ describe('Day ${dayNum}', () => {
     it('should solve example input', () => {
       expect(part1(exampleInput)).toBe(0);
     });
-
-    it.skip('should handle edge cases', () => {
-      expect(part1('')).toBe(0);
-    });
   });
 
   describe('Part 2', () => {
